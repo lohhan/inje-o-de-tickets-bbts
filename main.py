@@ -24,7 +24,7 @@ def random_date():
 # função de gerar um incidente aleatório
 def generate_random_incident(incident_number):
     data_criacao = random_date()    
-    data_modificacao = (data_criacao + timedelta(days=random.randint(1, 10)))
+    data_modificacao = (data_criacao + timedelta(days=random.randint(1, 30), hours=random.randint(0, 23), minutes=random.randint(0, 59)))
     incident = {
         "eventUniqueId": random_uuid(),
         "objectSchemaType": "Incident",
@@ -111,8 +111,8 @@ def post_incidents():
 
 if __name__ == "__main__":
    scheduler = BackgroundScheduler()
-   scheduler.add_job(add_incidents, 'interval', seconds=5)
-   scheduler.add_job(post_incidents, 'interval', seconds=10)
+   scheduler.add_job(add_incidents, 'interval', seconds=60)
+   scheduler.add_job(post_incidents, 'interval', seconds=60)
    scheduler.start()
 
    try:
