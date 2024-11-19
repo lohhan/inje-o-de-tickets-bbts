@@ -111,7 +111,7 @@ def post_incidents():
 
 if __name__ == "__main__":
    scheduler = BackgroundScheduler()
-   scheduler.add_job(add_incidents, 'interval', seconds=60)
+   scheduler.add_job(add_incidents, 'interval', seconds=30)
    scheduler.add_job(post_incidents, 'interval', seconds=60)
    scheduler.start()
 
